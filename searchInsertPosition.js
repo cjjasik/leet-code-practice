@@ -44,9 +44,11 @@ function searchInsertPosition(nums, target) {
 
     let foundTarget = nums.indexOf(target);
     if (foundTarget === -1) {
+        if (target < nums[0]) {
+            return 0;
+        }
         for (let i = 0; i < nums.length; i++) {
-            // if statement which evaluates the conditions
-            if (nums[i] > target && nums[i + 1] > target){
+            if (nums[i] < target && nums[i + 1] > target){
                 return i + 1;
             }
         }
@@ -61,3 +63,4 @@ function searchInsertPosition(nums, target) {
 console.log(searchInsertPosition([1,3,5,6], 5)) //expect: 2
 console.log(searchInsertPosition([1,3,5,6], 2)) //expect: 1
 console.log(searchInsertPosition([1,3,5,6], 7)) //expect: 4
+console.log(searchInsertPosition([1,3,5,6], 0)) //expect: 0
